@@ -1,0 +1,50 @@
+Request Body:
+{
+  "model": "meta-llama/llama-4-scout-17b-16e-instruct",
+     "stop" : [":6"],
+  "messages": [
+    {
+         "role": "system",
+         "content": "You are a Senior QA Analyst experienced in converting Agile user stories into high-quality, review-ready test cases."
+    },
+    {
+      "role": "user",
+      "content": "I — INSTRUCTION\nConvert the provided User Stories and Acceptance Criteria into detailed, testable Test Cases.\n\nMANDATORY RULES:\n1) Derive test cases ONLY from the given user stories and acceptance criteria.\n2) Do NOT add assumptions or new requirements.\n3) Cover positive, negative, and validation scenarios.\n4) Write test cases from an end-user perspective.\n5) Do NOT include implementation or technical details.\n\nC — CONTEXT\nThese test cases will be used by QA teams for manual and automation testing in an enterprise healthcare application.\n\nP — PERSONA\nYou are a Senior QA Analyst experienced in converting Agile user stories into high-quality, review-ready test cases.\n\nO — OUTPUT\nReturn test cases in the following structured format:\n- TC_ID:1\n- Title\n- Preconditions\n- Test Steps\n- Test Data\n- Expected Result Type\n Positive Negative Edge\n\nRules:\n- Each test case must be clear and independent\n- Use business-readable language only\n- One scenario per test case\n\nUSER STORY:\nAs a user, I want to record doctor activities and doctor notes so that the related functionality works as expected.\n\nACCEPTANCE CRITERIA:\nGiven the system is operational,\nWhen the user performs the intended action,\nThen the system should respond accurately and meet functional expectations. with 10 testcases"
+    }
+  ]
+}
+
+Response:
+{
+    "id": "chatcmpl-538bccd1-ba01-4652-9d29-74574bc64961",
+    "object": "chat.completion",
+    "created": 1771586106,
+    "model": "meta-llama/llama-4-scout-17b-16e-instruct",
+    "choices": [
+        {
+            "index": 0,
+            "message": {
+                "role": "assistant",
+                "content": "Here are the test cases derived from the provided User Story and Acceptance Criteria:\n\n**TC_ID:1**\n- **Title:** Record Doctor Activity - Valid Input\n- **Preconditions:** The system is operational, and the user is logged in with the necessary permissions.\n- **Test Steps:**\n  1. Navigate to the doctor activity recording page.\n  2. Enter valid doctor activity details (e.g., date, time, activity description).\n  3. Click the \"Save\" button.\n- **Test Data:** Valid doctor activity details (date: 2023-04-01, time: 10:00 AM, activity description: \"Patient consultation\").\n- **Expected Result:** The system records the doctor activity successfully and displays a confirmation message. **(Positive)**\n\n**TC_ID:2**\n- **Title:** Record Doctor Activity - Invalid Date\n- **Preconditions:** The system is operational, and the user is logged in with the necessary permissions.\n- **Test Steps:**\n  1. Navigate to the doctor activity recording page.\n  2. Enter invalid doctor activity details (e.g., date: 2023-02-30, time: 10:00 AM, activity description: \"Patient consultation\").\n  3. Click the \"Save\" button.\n- **Test Data:** Invalid doctor activity details (date: 2023-02-30, time: 10:00 AM, activity description: \"Patient consultation\").\n- **Expected Result:** The system displays an error message indicating that the date is invalid. **(Negative)**\n\n**TC_ID:3**\n- **Title:** Record Doctor Activity - Empty Fields\n- **Preconditions:** The system is operational, and the user is logged in with the necessary permissions.\n- **Test Steps:**\n  1. Navigate to the doctor activity recording page.\n  2. Leave all fields empty.\n  3. Click the \"Save\" button.\n- **Test Data:** Empty fields.\n- **Expected Result:** The system displays an error message indicating that all fields are required. **(Negative)**\n\n**TC_ID:4**\n- **Title:** Record Doctor Notes - Valid Input\n- **Preconditions:** The system is operational, and the user is logged in with the necessary permissions.\n- **Test Steps:**\n  1. Navigate to the doctor notes recording page.\n  2. Enter valid doctor notes details (e.g., note date, note description).\n  3. Click the \"Save\" button.\n- **Test Data:** Valid doctor notes details (date: 2023-04-01, note description: \"Patient has a fever\").\n- **Expected Result:** The system records the doctor notes successfully and displays a confirmation message. **(Positive)**\n\n**TC_ID:5**\n- **Title:** Record Doctor Notes - Exceeding Character Limit\n- **Preconditions:** The system is operational, and the user is logged in with the necessary permissions.\n- **Test Steps:**\n  1. Navigate to the doctor notes recording page.\n  2. Enter doctor notes details with a description exceeding the character limit (e.g., 1000 characters).\n  3. Click the \"Save\" button.\n- **Test Data:** Doctor notes details with a description exceeding the character limit.\n- **Expected Result:** The system displays an error message indicating that the description exceeds the character limit. **(Negative)**\n\n**TC_ID"
+            },
+            "logprobs": null,
+            "finish_reason": "stop"
+        }
+    ],
+    "usage": {
+        "queue_time": 0.516269277,
+        "prompt_tokens": 302,
+        "prompt_time": 0.008368152,
+        "completion_tokens": 1295,
+        "completion_time": 3.152450065,
+        "total_tokens": 1597,
+        "total_time": 3.160818217
+    },
+    "usage_breakdown": null,
+    "system_fingerprint": "fp_79da0e0073",
+    "x_groq": {
+        "id": "req_01khxc59nyfmrbccxf8yfvb47v",
+        "seed": 908760998
+    },
+    "service_tier": "on_demand"
+}

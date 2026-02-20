@@ -1,0 +1,52 @@
+{
+  "model": "meta-llama/llama-4-scout-17b-16e-instruct",
+    "temperature": 0.1,
+
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are an Accessibility Specialist and Senior QA Architect. Your task is to analyze Accessibility DOM structures and provide WCAG 2.2 compliance observations. You must base your analysis strictly on the provided Accessibility DOM. Do not assume UI behavior or add missing elements."
+    },
+    {
+      "role": "user",
+      "content": "I — INSTRUCTION\nAnalyze the provided Accessibility DOM and identify accessibility observations against WCAG 2.2 standards.\n\nMANDATORY RULES:\n1) Use ONLY the given Accessibility DOM.\n2) Do NOT assume visual styling, color contrast, or keyboard behavior unless explicitly present in the DOM,Strictly Give only the Findings no extra text or markdown.\n3) Classify findings under WCAG Level A, AA, and AAA.\n4) Clearly state whether each observation is Compliant, Potential Risk, or Non-Compliant.\n5) Do NOT suggest implementation fixes.\n\nC — CONTEXT\nThis analysis will be used for accessibility compliance reviews and audit preparation.\n\nP — PERSONA\nYou are a Senior Accessibility Auditor with expertise in WCAG 2.2 A, AA, and AAA standards [STRICTLY] with A,AA and AAA observation in same order.\n\nO — OUTPUT\nReturn observations in the following structure:\n- WCAG_Level (A / AA / AAA)\n- WCAG_Criterion\n- Observation\n- Compliance_Status (Compliant / Potential Risk / Non-Compliant)\n- Evidence (from Accessibility DOM)\n\nACCESSIBILITY DOM:\n\nIgnored\n  Ignored\n    generic\n      generic\n        generic\n          image\n            url: http://leaftaps.com/opentaps_images/opentaps_logo.png\n\nheading \"Leaftaps Login\"\n  StaticText \"Leaftaps Login\"\n    InlineTextBox \"Leaftaps Login\"\n\nparagraph\n  LabelText\n    StaticText \"Username\"\n      InlineTextBox \"Username\"\n  textbox \"Username\"\n    focusable: true\n    settable: true\n    multiline: false\n    readonly: false\n    required: false\n\nparagraph\n  LabelText\n    StaticText \"Password\"\n      InlineTextBox \"Password\"\n  textbox \"Password\"\n    focusable: true\n    settable: true\n    multiline: false\n    readonly: false\n    required: false\n\nparagraph\n  button \"Login\"\n    focusable: true\n    StaticText \"Login\"\n      InlineTextBox \"Login\"\n\nStaticText \"Welcome to Leaftaps Application - TestLeaf environment for automation engineering learning.\"\n  InlineTextBox \"Welcome to Leaftaps Application - TestLeaf environment for automation engineering learning.\""
+    }
+  ]
+}
+
+
+Response:
+
+{
+    "id": "chatcmpl-f618cf1c-5e09-45ea-9777-d438012dc536",
+    "object": "chat.completion",
+    "created": 1771586014,
+    "model": "meta-llama/llama-4-scout-17b-16e-instruct",
+    "choices": [
+        {
+            "index": 0,
+            "message": {
+                "role": "assistant",
+                "content": "- WCAG_Level: A\n- WCAG_Criterion: 1.1.1 Non-text Content \n- Observation: The image with url \"http://leaftaps.com/opentaps_images/opentaps_logo.png\" does not have a text alternative.\n- Compliance_Status: Non-Compliant\n- Evidence: image url: http://leaftaps.com/opentaps_images/opentaps_logo.png\n\n- WCAG_Level: A\n- WCAG_Criterion: 1.3.1 Info and Relationships \n- Observation: The StaticText \"Username\" and \"Password\" are not associated with their corresponding textboxes.\n- Compliance_Status: Non-Compliant\n- Evidence: paragraph > LabelText > StaticText \"Username\" and textbox \"Username\", paragraph > LabelText > StaticText \"Password\" and textbox \"Password\"\n\n- WCAG_Level: A\n- WCAG_Criterion: 1.3.2 Meaningful Sequence \n- Observation: The order of the elements in the Accessibility DOM seems logical.\n- Compliance_Status: Compliant\n- Evidence: The given Accessibility DOM\n\n- WCAG_Level: A\n- WCAG_Criterion: 2.1.1 Keyboard Navigation \n- Observation: The textbox \"Username\", textbox \"Password\" and button \"Login\" are focusable.\n- Compliance_Status: Compliant\n- Evidence: textbox \"Username\" > focusable: true, textbox \"Password\" > focusable: true, button \"Login\" > focusable: true\n\n- WCAG_Level: A\n- WCAG_Criterion: 2.1.3 Keyboard-Operable \n- Observation: There is no information about the operability of the controls using the keyboard.\n- Compliance_Status: Potential Risk\n- Evidence: The given Accessibility DOM\n\n- WCAG_Level: A\n- WCAG_Criterion: 3.1.1 Language of Page \n- Observation: There is no clear indication of the language of the page.\n- Compliance_Status: Potential Risk\n- Evidence: The given Accessibility DOM\n\n- WCAG_Level: AA\n- WCAG_Criterion: 1.4.7 Visual Presentation \n- Observation: There is no information about the visual presentation of the blocks of text.\n- Compliance_Status: Potential Risk\n- Evidence: The given Accessibility DOM\n\n- WCAG_Level: AA\n- WCAG_Criterion: 2.4.6 Headings and Labels \n- Observation: The labels for the textboxes are provided but not explicitly associated.\n- Compliance_Status: Non-Compliant\n- Evidence: paragraph > LabelText > StaticText \"Username\" and textbox \"Username\", paragraph > LabelText > StaticText \"Password\" and textbox \"Password\"\n\n- WCAG_Level: AAA\n- WCAG_Criterion: 1.4.8 Visual Presentation \n- Observation: There is no information about the visual presentation of the blocks of text.\n- Compliance_Status: Potential Risk\n- Evidence: The given Accessibility DOM\n\n- WCAG_Level: AAA\n- WCAG_Criterion: 2.4.9 Link Purpose \n- Observation: There are no links in the provided Accessibility DOM.\n- Compliance_Status: Compliant\n- Evidence: The given Accessibility DOM \n\n- WCAG_Level: AAA\n- WCAG_Criterion: 3.1.3 Error Prevention \n- Observation: There is no information about the prevention of errors.\n- Compliance_Status: Potential Risk\n- Evidence: The given Accessibility DOM"
+            },
+            "logprobs": null,
+            "finish_reason": "stop"
+        }
+    ],
+    "usage": {
+        "queue_time": 0.045094203,
+        "prompt_tokens": 524,
+        "prompt_time": 0.017362276,
+        "completion_tokens": 705,
+        "completion_time": 1.640908752,
+        "total_tokens": 1229,
+        "total_time": 1.6582710280000001
+    },
+    "usage_breakdown": null,
+    "system_fingerprint": "fp_79da0e0073",
+    "x_groq": {
+        "id": "req_01khxc2hyrfgpt4912vchk0t4e",
+        "seed": 1745650015
+    },
+    "service_tier": "on_demand"
+}
