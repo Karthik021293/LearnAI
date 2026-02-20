@@ -1,0 +1,54 @@
+MODELS:
+
+Qwen: Qwen3 Max Thinking
+262K context window
+$1.20/M input tokens
+$6/M output tokens
+
+Qwen: Qwen3 Coder Next
+262K context
+$0.07/M input tokens
+$0.30/M output tokens
+
+Qwen/qwen3-30b-a3b-thinking-2507
+ 33K context
+ $0.051/M  input tokens
+ $0.34/M  output tokens
+
+
+Open AI:
+1.Aurora Alpha
+128K context
+$0/M input tokens
+$0/M output tokens
+
+2.Pony Alpha
+200K context
+$0/M input tokens
+$0/M output tokens
+
+3.OpenAI: GPT Audio
+128K context
+$2.50/M input tokens
+$10/M output tokens
+$32/M audio tokens
+
+Claude:
+1.Anthropic: Claude Opus 4.6
+1,000,000 context
+Starting at $5/M input tokens
+Starting at $25/M output tokens
+
+2.Anthropic: Claude Opus 4.5
+200,000 context
+$5/M input tokens
+$25/M output tokens
+
+3.Anthropic: Claude Sonnet 4
+1,000,000 context
+Starting at $3/M input tokens
+Starting at $15/M output tokens
+
+Models:
+canopylabs/orpheus-arabic-saudi  4,000 context window
+meta-llama/llama-4-maverick-17b-128e-instruct  4,000 context window
